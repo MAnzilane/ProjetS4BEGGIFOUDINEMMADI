@@ -66,7 +66,7 @@ int max(ReducedGraph * rgCpy, int lastPos, char color, int profondeur) {
     if (profondeur == 0 || searchGroup (rgCpy->blackHashTab, rgCpy->rG, lastPos, color) == 1) {
         return heuristique(rgCpy);
     }
-
+    //anzilane
     int val_max = -1;
     int val_tmp;
     for (size_t i = 0; i < getNbVertexGraph(rgCpy->rG); i++) {

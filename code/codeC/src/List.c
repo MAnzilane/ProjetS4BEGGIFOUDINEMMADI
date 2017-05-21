@@ -52,6 +52,21 @@ void destroyList(List * l) {
     free(l->sent);
     free(l);
 }
+
+List *popBack(List *l) {
+    if (l == NULL) {
+        fprintf(stderr, "dsl on ne peut pas supprimer un element sur une liste vide \n");
+        exit(EXIT_FAILURE);
+    }
+
+    Node *n = l->sent->prev;
+    l->sent->prev->next = n->next;
+    l->sent->prev = n->prev;
+    l->sizeList--;
+    free(n);
+    return l;
+}
+
 /*-----------------------------------------------------------------------------*/
                             //Get Functions
 /*-----------------------------------------------------------------------------*/

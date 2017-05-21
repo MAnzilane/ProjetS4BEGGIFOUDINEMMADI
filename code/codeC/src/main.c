@@ -11,6 +11,7 @@
 #include "ReducedGraph.h"
 #include "TreeOfGameIA.h"
 int main(int argc, const char * argv[]) {
+    srand(time(NULL));
     // int i;
     // Graph g = createGraph(4);
     // char * str = getSpotsFromFile("../../../doc/config/size4.txt");
@@ -46,12 +47,12 @@ int main(int argc, const char * argv[]) {
     // postUpBoard(g);
     // postUpSideAdjacentGraph(g);
     //int i;
-    Graph g = createGraph(4);
-    char * str = getSpotsFromFile("../../../doc/config/size4.txt");
+    Graph g = createGraph(3);
+    char * str = getSpotsFromFile("../../../doc/config/size3.txt");
     g = createBoardGraph(g, str, &i);
     ReducedGraph * rg = createReducedGraph(g);
-    TreeGame tr;
-    //int meilleurCoup;
+    // TreeGame tr;
+    int meilleurCoup;
     while (i < getNbVertexGraph(g) && stop == 0){
         if (joueur){
             //p = createPiece(BLACK);
@@ -74,10 +75,10 @@ int main(int argc, const char * argv[]) {
         joueur = !joueur;
         i++;
     }
-    //
-    // if (stop){
-    //     printf("groupe gagnant trouvé\nvaleur de stop = %d\n", stop);
-    // }
+    
+    if (stop){
+        printf("groupe gagnant trouvé\nvaleur de stop = %d\n", stop);
+    }
 
     return 0;
 }

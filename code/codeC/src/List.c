@@ -77,7 +77,7 @@ void printList(const List *l) {
     Node *itr = l->sent;
     assert(itr->next);
     int i = 0;
-    while (itr->next != l->sent) {
+    while (itr != l->sent) {
         printf("elem %d %d\n",i++, itr->next->pos);
         assert(itr->next);
         itr = itr->next;

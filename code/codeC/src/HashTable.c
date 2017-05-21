@@ -127,6 +127,8 @@ bool searchGroup(TabHash *tabH, Graph g, int pos, char color) {
                 if (isInGroup(vAdj) && isInGroup(v)) {
                     if (!isInSameGroup(v, vAdj)) {
                         //the groups are united
+                        printList(tabH->groupList[v->groupLeader]);
+                        printList(tabH->groupList[vAdj->groupLeader]);
                         if (largerGroup(tabH, v->groupLeader, vAdj->groupLeader) == 1 ) {
                             newGroup = groupUnion(vList, vAdjList, g);
                         }else {
@@ -139,10 +141,12 @@ bool searchGroup(TabHash *tabH, Graph g, int pos, char color) {
                     vAdj is put into v's group*/
                     posAdj = calculateHexCoordinates(vAdj->coord.x, vAdj->coord.y,
                         getSizeGraph(g));
+                    printList(vList);
                     vList = addToGroup(vList, posAdj, g);
                     newGroup = vList;
                 }else if (isInGroup(vAdj) && !isInGroup(v)){
                     //v is put into vAdj's group
+                    printList(vAdjList);
                     vAdjList = addToGroup(vAdjList, pos, g);
                     newGroup = vAdjList;
                 }else {
@@ -150,6 +154,7 @@ bool searchGroup(TabHash *tabH, Graph g, int pos, char color) {
                     posAdj = calculateHexCoordinates(vAdj->coord.x, 
                         vAdj->coord.y, getSizeGraph(g));
                     newGroup = createNewGroup(g, pos, posAdj);
+                    printList(newGroup);
                     tabH = hashFonctionRg(tabH, newGroup);
                 }
             }
@@ -166,6 +171,7 @@ bool searchGroup(TabHash *tabH, Graph g, int pos, char color) {
                             //Observation Functions
 /*-----------------------------------------------------------------------------*/
 bool largerGroup(const TabHash *tabH, int leader1, int leader2) {
+    assert(tabH->groupList[leader1] && tabH->groupList[leader2]);
     if (tabH->groupList[leader1]->sizeList >= tabH->groupList[leader2]->sizeList){
         return true;
     }else

@@ -15,16 +15,16 @@
 typedef struct s_ReducedGraph {
     TabHash * whiteHashTab;
     TabHash * blackHashTab;
-    Graph rG;
+    Graph g;
 } ReducedGraph;
 
 //allocates memory for the reduced graph and its two hash tables
 ReducedGraph * createReducedGraph(Graph g);
 
-//reloads all the groups of a graph g, essential if the game has been loaded
-ReducedGraph * reloadGroups(Graph g, ReducedGraph *_rG);
+//reloads all the groups of a reduced graph rG, essential if the game has been loaded
+ReducedGraph * reloadGroups(ReducedGraph *rG);
 
-void destroyReducedGraph(ReducedGraph * _rG);
+void destroyReducedGraph(ReducedGraph * rG);
 /*-----------------------------------------------------------------------------*/
 
 #endif /* ReducedGraph_h */ 
